@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gestor de gastos</title>
+    </head>
+    
+    <style>
+        .gastos{
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+        }
+    </style>    
+        <body>
+        <div class="gastos">
+
+            <div>
+            <h1>Gestor de gastos</h1>
+            <p>total: {{total}}</p>
+            <a href="{% url 'agregar' %}">Agregar gasto</a>
+            <br>
+    
+            <br>
+            
+            </div>
+            <div>
+                <form method="GET">
+                    {{form.desde.label_tag}} {{form.desde}}
+                    {{form.hasta.label_tag}} {{form.hasta}}
+                    <button type="submit">Filtrar</button>
+
+                </form>
+            <br>    
+            {% for gasto in gastos %}
+            <hr>
+            <p>monto: {{gasto.monto}}</p>
+            <p>categoria: {{gasto.categoria}}</p>
+            <p>fecha: {{gasto.fecha}}</p>
+            <a href="{% url 'eliminar' gasto.id %}">Eliminar</a>
+            <a href="{% url 'editar' gasto.id %}">Editar</a>
+            <hr>
+            {% endfor %}
+            </div>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+
+
+        
+
+
+
+
+
+
+
+    </body>
+</html>
